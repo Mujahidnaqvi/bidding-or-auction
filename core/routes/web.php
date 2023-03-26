@@ -15,7 +15,6 @@ Route::get('cron', 'CronController@selectWinner')->name('cron');
 */
 
 
-
 Route::namespace('Gateway')->prefix('ipn')->name('ipn.')->group(function () {
     Route::post('paypal', 'paypal\ProcessController@ipn')->name('paypal');
     Route::get('paypal_sdk', 'paypal_sdk\ProcessController@ipn')->name('paypal_sdk');
