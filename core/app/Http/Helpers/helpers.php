@@ -546,6 +546,7 @@ function sendPhpMail($receiver_email, $receiver_name, $subject, $message)
 
 function sendSmtpMail($config, $receiver_email, $receiver_name, $subject, $message,$gnl)
 {
+    // dd($config, $receiver_email, $receiver_name, $subject, $message,$gnl);
     $mail = new PHPMailer(true);
 
     try {
@@ -572,6 +573,7 @@ function sendSmtpMail($config, $receiver_email, $receiver_name, $subject, $messa
         $mail->Body    = $message;
         $mail->send();
     } catch (Exception $e) {
+        dd($e->getMessage());
         throw new Exception($e);
     }
 }
@@ -733,7 +735,7 @@ function sendGeneralEmail($email, $subject, $message, $receiver_name = '')
     if ($config->name == 'php') {
         sendPhpMail($email, $receiver_name, $general->email_from, $subject, $message);
     } else if ($config->name == 'smtp') {
-        sendSmtpMail($config, $email, $receiver_name, $general->email_from, $general->sitename, $subject, $message);
+        sendSmtpMail($config, $email, $receiver_name, $subject, $message, $general);
     } else if ($config->name == 'sendgrid') {
         sendSendGridMail($config, $email, $receiver_name, $general->email_from, $general->sitename, $subject, $message);
     } else if ($config->name == 'mailjet') {
