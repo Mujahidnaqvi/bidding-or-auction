@@ -14,6 +14,7 @@ use Image;
 use Session;
 use Validator;
 
+
 class TicketController extends Controller
 {
 
